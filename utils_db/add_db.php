@@ -1,13 +1,12 @@
 <?php
-
 if(isset($_POST['title'])){
-    require '../db_conn.php';
+    require './db_conn.php';
 
     $title = $_POST['title'];
     $new_title = stripslashes($title);
 
     if(empty($new_title)){
-        header("Location: ../index.php?mess=error");
+        header("Location: ./../todo/todo.php?mess=error");
     }else {
         if (get_magic_quotes_gpc()) {
             $stmt = $conn->prepare("INSERT INTO todos(title) VALUE(?)");
@@ -17,13 +16,13 @@ if(isset($_POST['title'])){
             $res = $stmt->execute([$new_title]);
         }
         if($res){
-            header("Location: ../index.php?mess=success"); 
+            header("Location: ./../todo/todo.php?mess=success"); 
         }else {
-            header("Location: ../index.php");
+            header("Location: ./../todo/todo.php");
         }
         $conn = null;
         exit();
     }
 }else {
-    header("Location: ../index.php?mess=error");
+    header("Location: ./../todo/todo.php?mess=error");
 }

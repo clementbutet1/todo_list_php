@@ -1,7 +1,7 @@
 <?php
 
 if(isset($_POST['id'])){
-    require '../db_conn.php';
+    require './db_conn.php';
 
     $id = $_POST['id'];
 
@@ -20,5 +20,5 @@ if(isset($_POST['id'])){
         exit();
     }
 }else {
-    header("Location: ../index.php?mess=error");
+    header("Location: ./../todo/todo.php?mess=error");
 }

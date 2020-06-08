@@ -1,3 +1,7 @@
+<?php 
+require './../utils_db/db_conn.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>To-Do List</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="todo.css">
 </head>
 <body>
     <div class="heading">
@@ -13,7 +17,7 @@
     </div>
     <div class="main-section">
        <div class="add-section">
-          <form action="app/add.php" method="POST" autocomplete="off">
+          <form action="./../utils_db/add_db.php" method="POST" autocomplete="off">
              <?php if(isset($_GET['mess']) && $_GET['mess'] == 'error'){ ?>
                 <input type="text" 
                      name="title" 
@@ -61,6 +65,7 @@
                 </div>
             <?php } ?>
        </div>
+       <a href="./../logout.php">Sign out </a>
     </div>
 
     <script src="js/rm_query.js"></script>
@@ -70,7 +75,7 @@
             $('.remove-to-do').click(function(){
                 const id = $(this).attr('id');
                 
-                $.post("app/remove.php", {
+                $.post("./../utils_db/remove_db.php", {
                           id: id },
                       (data)  => {
                          if(data){
@@ -82,7 +87,7 @@
             $(".check-box").click(function(e){
                 const id = $(this).attr('data-todo-id');
                 
-                $.post('app/check.php', 
+                $.post('./../utils_db/check_db.php', 
                       {
                           id: id
                       },
