@@ -9,10 +9,10 @@ session_start();
             $userexist = $requser->rowCount();
             if ($userexist == 1) {
                 $userinfo = $requser->fetch();
-                $_SESSION['id_usr'] = $userinfo['id_usr'];
+                $_SESSION['id'] = $userinfo['id'];
                 $_SESSION['nickname'] = $userinfo['nickname'];
                 $_SESSION['email'] = $userinfo['email'];
-                header("Location: profil.php?id_usr=".$_SESSION['id_usr']);
+                header("Location: profil.php?id=".$_SESSION['id']);
             } else {
                 $erreur = "Wrong mail or password";
             }

@@ -1,23 +1,23 @@
 <?php
 
-if(isset($_POST['id_usr'])){
+if(isset($_POST['id'])){
     require './db_conn.php';
 
-    $id_usr = $_POST['id_usr'];
+    $id = $_POST['id'];
 
-    if(empty($id_usr)){
+    if(empty($id)){
        echo 'error';
     }else {
-        $todos = $conn->prepare("SELECT id_usr, checked FROM todos WHERE id_usr=?");
-        $todos->execute([$id_usr]);
+        $todos = $conn->prepare("SELECT id, checked FROM todos WHERE id = ?");
+        $todos->execute([$id]);
 
         $todo = $todos->fetch();
-        $uId = $todo['id_usr'];
+        $uId = $todo['id'];
         $checked = $todo['checked'];
 
         $uChecked = $checked ? 0 : 1;
 
-        $res = $conn->query("UPDATE todos SET checked=$uChecked WHERE id_usr=$uId");
+        $res = $conn->query("UPDATE todos SET checked=$uChecked WHERE id=$uId");
 
         if($res){
             echo $checked;
